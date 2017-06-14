@@ -29,19 +29,27 @@
           </button>
         </span>
       </div>
-
-      <div class="input-group input-group-lg"><!-- repeat  -->
-        <span class="input-group-addon">
-          <input type="checkbox"> <!-- model -->
-        </span>
-        <input class="form-control" type="text" ng-model="recipe.val"><!-- model / class  -->
-        <span class="input-group-btn">
-          <button ng-click="ctrl.deleteRecipe($index)" class="btn btn-danger" type="button"><!-- click  -->
-            <i class="glyphicon glyphicon-remove"></i>
+      
+      <div ng-repeat="recipe in ctrl.recipes">
+        <div class="input-group input-group-lg" ><!-- repeat  -->
+          <span class="input-group-addon">
+            <input type="checkbox" ng-click="ctrl.expandRecipe($index)"> <!-- click -->
+          </span>
+          <input class="form-control" type="text" ng-model="recipe.val"><!-- model / class  -->
+          <span class="input-group-btn">
+            <button ng-click="ctrl.deleteRecipe($index)" class="btn btn-danger" type="button"><!-- click  -->
+              <i class="glyphicon glyphicon-remove"></i>
+            </button>
+          </span>
+        </div>
+        <div ng-repeat="ingredient in ctrl.recipes[$index].ingredients">
+          <input ng-model="recipe.ingredients[$index]"></input>
+        </div>
+          <input type="text" placeholder="Add Ingredient" ng-model="ctrl.newIngredient" name =$index></input>
+          <button ng-click="ctrl.addNewIngredient($index)" class="btn btn-success" type="button"><!-- click  -->
+            <i class="glyphicon glyphicon-plus"></i>
           </button>
-        </span>
       </div>
-
     </div>
   </section>
 </body>
